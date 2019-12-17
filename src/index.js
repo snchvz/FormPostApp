@@ -1,12 +1,11 @@
-const express = require('express');
-require('./db/mongoose');
-const User = require('./models/user');
-const Post = require('./models/post');
-const userRouter = require('./routers/user');
-const postRouter = require('./routers/post');
+const app = require('./app');
 
-const app = express();
 const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log('server is up on port ' + port);
+});
+
 
 //Use multer to upload files like images or word docs
 // const multer = require('multer');
@@ -50,17 +49,10 @@ const port = process.env.PORT;
 //     res.status(503).send('all requests are disabled');
 // });
 
-app.use(express.json());    //used to parse json
-app.use(userRouter);
-app.use(postRouter);
 
 //without middleware: new request -> run route handler
 //
 //with middleware: new request -> do something -> run route handler
-
-app.listen(port, () => {
-    console.log('server is up on port ' + port);
-});
 
 //Example on how to populate from ref properties
 // const main = async() => {
