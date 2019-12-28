@@ -33,7 +33,7 @@ router.post('/users/login', async (req,res) => {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         const token = await user.generateAuthToken();
 
-        res.send({ user, token});    //shorthand syntax to define both properties
+        res.send({user, token});    //shorthand syntax to define both properties
     } catch (e) {
         res.status(400).send();
     }
